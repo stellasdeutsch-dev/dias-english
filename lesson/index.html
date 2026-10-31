@@ -64,7 +64,7 @@ img{max-width:100%;height:auto;display:block}
 button{font:inherit;color:inherit;cursor:pointer}
 a{color:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
-section{position:relative;padding:72px 0}
+section{position:relative;padding:72px 0;overflow-x:clip}
 @media(min-width:900px){section{padding:112px 0}}
 .ic{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
@@ -122,7 +122,7 @@ section{position:relative;padding:72px 0}
 .hero-title{position:absolute;z-index:2;left:0;right:0;top:58px;text-align:center;
   font:700 clamp(72px,20vw,300px)/.8 var(--hd);color:#fff;letter-spacing:-.01em;text-transform:uppercase;
   text-shadow:0 6px 30px rgba(20,50,140,.35);animation:drop 1.1s cubic-bezier(.2,1.4,.4,1) both}
-.hero-art{position:absolute;z-index:3;left:50%;top:170px;width:min(88%,440px);height:250px;translate:-50% 0;animation:rise 1.2s .15s cubic-bezier(.2,1,.3,1) both}
+.hero-art{position:absolute;z-index:3;left:50%;top:196px;width:min(88%,440px);height:250px;translate:-50% 0;animation:rise 1.2s .15s cubic-bezier(.2,1,.3,1) both}
 .hero-art img{position:absolute;filter:drop-shadow(0 22px 26px rgba(20,40,100,.28))}
 .hero-art .ha-sleigh{left:6%;bottom:0;width:80%}
 .hero-art .ha-sack{left:33%;bottom:62px;width:40%}
@@ -131,8 +131,8 @@ section{position:relative;padding:72px 0}
 .badge{position:absolute;z-index:5;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#fff;border-radius:14px;box-shadow:var(--sh2);font-weight:700;font-size:14px;white-space:nowrap}
 .badge .chk{width:20px;height:20px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff}
 .badge .chk .ic{width:12px;height:12px;stroke-width:3.4}
-.hero-badge{left:50%;top:430px;translate:-50% 0}
-.hero-red{position:relative;z-index:4;margin:0 16px;padding:26px 22px 22px;margin-top:440px}
+.hero-badge{left:50%;top:452px;translate:-50% 0}
+.hero-red{position:relative;z-index:4;margin:0 16px;padding:26px 22px 22px;margin-top:470px}
 .hero-red .k{font:800 10.5px/1 var(--tx);letter-spacing:.4em;text-transform:uppercase;opacity:.9}
 .hero-red .t{font:700 clamp(36px,10.4vw,60px)/1 var(--hd);text-transform:uppercase;margin:12px 0 8px;max-width:88%}
 .hero-red .s{max-width:70%}
@@ -396,7 +396,7 @@ table.t b{color:var(--blue)}
 @media(min-width:760px){.ideal{grid-template-columns:1fr 1fr}}
 .feat{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .feat .card{padding:18px 16px;min-height:130px;display:flex;flex-direction:column;justify-content:space-between}
-.feat b{font:700 clamp(38px,10vw,58px)/.9 var(--hd);color:var(--navy);text-transform:uppercase}
+.feat b{font:700 clamp(32px,8.6vw,42px)/.95 var(--hd);color:var(--navy);text-transform:uppercase;overflow-wrap:anywhere}
 .feat span{font-size:13px;color:var(--muted);line-height:1.35}
 .gal{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 16px 22px;margin:26px -16px 0;scrollbar-width:none}
 .gal::-webkit-scrollbar{display:none}
@@ -478,7 +478,53 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
 .vhint .ri .ic{width:22px;height:22px}
 .vhint p{margin:0;font-size:14.5px;flex:1;min-width:200px}
 @media(min-width:760px){.vsheet{left:auto;right:16px;top:70px;bottom:auto;width:400px}.vfab{top:16px;right:16px}}
-@media(prefers-reduced-motion:reduce){.hero-title,.hero-art{animation:none}}
+/* ---- extra visuals ---- */
+#prog{position:fixed;top:0;left:0;right:0;height:4px;z-index:80;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--red),var(--gold3),var(--blue2))}
+.btn-gold{position:relative;overflow:hidden}
+.btn-gold::after{content:"";position:absolute;top:-20%;bottom:-20%;width:38%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.8),transparent);transform:skewX(-18deg);animation:shine 3.6s ease-in-out infinite;pointer-events:none}
+@keyframes shine{0%,62%{left:-60%}100%{left:130%}}
+.spark{position:absolute;z-index:3;width:16px;height:16px;pointer-events:none;background:#fff;animation:twinkle 2.4s ease-in-out infinite;
+  clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
+@keyframes twinkle{0%,100%{opacity:.15;scale:.5}50%{opacity:1;scale:1.15}}
+.qrot{position:absolute;z-index:4;left:50%;top:136px;translate:-50% 0;height:40px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.95);box-shadow:var(--sh2);padding:0 18px;cursor:pointer;min-width:220px;text-align:center}
+.qrot span{display:block;font:800 16px/40px var(--tx);color:var(--blue);white-space:nowrap}
+.garland{position:relative;height:56px;margin:-8px 0 0;pointer-events:none}
+.garland svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+.garland .wire{fill:none;stroke:#2A3B64;stroke-width:2}
+.garland .bulb{animation:blink 1.8s ease-in-out infinite alternate}
+@keyframes blink{0%{opacity:.35}100%{opacity:1}}
+.bands{position:relative;height:150px;overflow:hidden;margin:0}
+.band{position:absolute;left:-10%;right:-10%;padding:13px 0;white-space:nowrap;overflow:hidden;box-shadow:0 14px 30px rgba(20,40,100,.18)}
+.band.b1{top:28px;background:linear-gradient(90deg,var(--blue3),var(--blue));rotate:-4deg;z-index:2}
+.band.b2{top:66px;background:linear-gradient(90deg,var(--red),var(--red2));rotate:3deg}
+.track{display:inline-flex;gap:26px;padding-right:26px;font:700 24px/1 var(--hd);color:#fff;text-transform:uppercase;letter-spacing:.02em;animation:mq 34s linear infinite}
+.band.b2 .track{animation-direction:reverse}
+.track i{font-style:normal;color:var(--gold2)}
+html.gs .track{animation:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+.melody{margin-top:16px;cursor:pointer;max-width:360px}
+.melody svg{width:100%;height:auto;overflow:visible;display:block}
+.melody .mtrack{fill:none;stroke:rgba(255,255,255,.3);stroke-width:3;stroke-dasharray:1 10;stroke-linecap:round}
+.melody .mline{fill:none;stroke:#FFE08A;stroke-width:5;stroke-linecap:round}
+.melody .mdot{fill:#fff}
+.melody .mglow{fill:#FFE08A;opacity:.45}
+.melody.dark .mtrack{stroke:#BFCBE4}.melody.dark .mline{stroke:var(--blue)}.melody.dark .mdot{fill:var(--red)}.melody.dark .mglow{fill:var(--red2);opacity:.25}
+.mwords{display:flex;justify-content:space-between;font:800 17px var(--tx);margin-top:2px}
+.mcap{font-size:12.5px;opacity:.75;margin-top:2px}
+.fan{position:relative;height:400px;margin:26px auto 0;max-width:520px}
+.fan .phone{position:absolute;left:50%;top:20px;width:160px;margin-left:-80px;border-radius:30px;padding:8px}
+.fan .phone img{border-radius:23px}
+.fan .f1{transform:translate(-96px,30px) rotate(-13deg);z-index:1}
+.fan .f2{transform:translate(0,0);z-index:3}
+.fan .f3{transform:translate(96px,30px) rotate(13deg);z-index:2}
+.fan .obj{z-index:4}
+@media(min-width:760px){.fan{height:520px}.fan .phone{width:220px;margin-left:-110px}.fan .f1{transform:translate(-170px,40px) rotate(-14deg)}.fan .f3{transform:translate(170px,40px) rotate(14deg)}}
+.px{z-index:1;opacity:.95}
+.feat b span{font:inherit;color:inherit;line-height:inherit}
+@media(min-width:900px){.qrot{left:44px;top:262px;translate:none}}
+.snow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.panel-blue .panel-in{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){.hero-title,.hero-art{animation:none}.btn-gold::after,.spark,.garland .bulb,.track{animation:none}}
 </style>
 
 </head>
@@ -503,6 +549,7 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
 </svg>
 <canvas id="confetti"></canvas>
+<div id="prog" aria-hidden="true"></div>
 <button class="vfab" id="vfab" aria-haspopup="dialog" aria-controls="vsheet"><svg class="ic"><use href="#i-vol"/></svg><span>Голос</span></button>
 <div class="vsheet" id="vsheet" role="dialog" aria-label="Выбор озвучки" hidden>
   <header><b>Озвучка</b><button class="x" data-close aria-label="Закрыть"><svg class="ic"><use href="#i-x"/></svg></button></header>
@@ -525,6 +572,8 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
         <nav class="hero-links"><a href="#map">5 типов</a><a href="#practice">Тренажёр</a></nav>
       </div>
       <div class="hero-title" aria-hidden="true">Вопросы</div>
+      <span class="spark" style="left:12%;top:112px;animation-delay:0s;width:14px;height:14px"></span><span class="spark" style="left:86%;top:150px;animation-delay:0.6s;width:18px;height:18px"></span><span class="spark" style="left:70%;top:90px;animation-delay:1.2s;width:12px;height:12px"></span><span class="spark" style="left:24%;top:330px;animation-delay:0.9s;width:16px;height:16px"></span><span class="spark" style="left:92%;top:380px;animation-delay:1.6s;width:12px;height:12px"></span><span class="spark" style="left:48%;top:250px;animation-delay:2s;width:10px;height:10px"></span>
+      <div class="qrot" id="qrot" title="Нажми, чтобы послушать"><span>Are you ready?</span></div>
       <img class="obj bauble float" src="../media/bauble.webp" alt="">
       <img class="obj qb float" src="../media/qblue.webp" alt="">
       <div class="hero-art" aria-hidden="true"><img class="ha-tree" src="../media/tree.webp" alt=""><img class="ha-sleigh" src="../media/sleigh.webp" alt=""><img class="ha-sack" src="../media/sack.webp" alt=""><img class="ha-gift" src="../media/gift.webp" alt=""></div>
@@ -551,6 +600,8 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
   <div class="wrap"><div class="card vhint rv"><div class="ri"><svg class="ic"><use href="#i-vol"/></svg></div><p><b>Всё английское можно послушать.</b> Жми на фразы со значком 🔈. Голос, акцент и скорость выбираешь сам.</p><button class="btn btn-line" data-voice>Выбрать голос</button></div></div>
 </section>
 
+<div class="bands" aria-hidden="true"><div class="band b1"><div class="track"><span>Are you ready?</span><i>✳</i><span>Where do you live?</span><i>✳</i><span>Tea or coffee?</span><i>✳</i><span>Who called you?</span><i>✳</i><span>You're ready, aren't you?</span><i>✳</i><span>Do you know where he lives?</span><i>✳</i><span>Did you call her?</span><i>✳</i><span>Who are you talking to?</span><i>✳</i><span>Are you ready?</span><i>✳</i><span>Where do you live?</span><i>✳</i><span>Tea or coffee?</span><i>✳</i><span>Who called you?</span><i>✳</i><span>You're ready, aren't you?</span><i>✳</i><span>Do you know where he lives?</span><i>✳</i><span>Did you call her?</span><i>✳</i><span>Who are you talking to?</span><i>✳</i></div></div><div class="band b2"><div class="track"><span>Who are you talking to?</span><i>✳</i><span>Did you call her?</span><i>✳</i><span>Do you know where he lives?</span><i>✳</i><span>You're ready, aren't you?</span><i>✳</i><span>Who called you?</span><i>✳</i><span>Tea or coffee?</span><i>✳</i><span>Where do you live?</span><i>✳</i><span>Are you ready?</span><i>✳</i><span>Who are you talking to?</span><i>✳</i><span>Did you call her?</span><i>✳</i><span>Do you know where he lives?</span><i>✳</i><span>You're ready, aren't you?</span><i>✳</i><span>Who called you?</span><i>✳</i><span>Tea or coffee?</span><i>✳</i><span>Where do you live?</span><i>✳</i><span>Are you ready?</span><i>✳</i></div></div></div>
+
 <!-- ===== FOR YOU ===== -->
 <section id="foryou">
   <div class="wrap">
@@ -569,6 +620,7 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
   </div>
 </section>
 
+<div class="garland" aria-hidden="true"></div>
 <!-- ===== MAP ===== -->
 <section id="map">
   <div class="wrap center">
@@ -588,6 +640,7 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
 
 <!-- ===== CORE ===== -->
 <section id="core">
+  <img class="obj px" data-speed="1.4" src="../media/cane.webp" alt="" style="width:58px;right:3%;top:40px">
   <div class="wrap">
     <span class="lbl">Главный секрет</span>
     <h2 class="h2 grad split">Вопрос делается <span class="bl">перестановкой</span></h2>
@@ -614,12 +667,13 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
 <section id="t1">
   <div class="wrap">
     <div class="panel-blue rv">
+      <img class="obj" src="../media/branch.webp" alt="" style="width:150px;left:-30px;top:-26px;z-index:3;rotate:-150deg">
       <div class="panel-in">
         <div>
           <span class="lbl">Тип 01</span>
           <h2 class="h2 split">Общий вопрос</h2>
           <p class="lead" style="margin-top:14px">Ответ да или нет. Начинается с глагола. В конце голос идёт вверх.</p>
-          <div class="into"><svg class="into-svg" viewBox="0 0 46 30"><path d="M3 26 C15 26 26 20 42 5" stroke="#FFE08A"/><path d="M33 4h10v10" stroke="#FFE08A"/></svg>Are you <b>ready?</b> ↗</div>
+          <div class="melody" data-say="Are you ready?"><svg viewBox="0 0 300 90"><path class="mtrack" d="M8 70 C 90 70, 170 66, 215 52 S 280 18, 292 10"/><path class="mline" d="M8 70 C 90 70, 170 66, 215 52 S 280 18, 292 10"/><circle class="mglow" r="14" cx="8" cy="0"/><circle class="mdot" r="7" cx="8" cy="0"/></svg><div class="mwords"><span>Are</span><span>you</span><span>ready?</span></div><div class="mcap">Нажми: голос в конце идёт вверх ↗</div></div>
         </div>
         <div class="starts">
           <div class="card"><b>Are</b><span>Are you ready?</span></div>
@@ -654,11 +708,13 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
 
 <!-- ===== T2 ===== -->
 <section id="t2">
+  <img class="obj px" data-speed="1" src="../media/bauble.webp" alt="" style="width:64px;right:4%;top:30px">
   <div class="wrap">
     <span class="tnum">ТИП 02</span>
     <h2 class="h2 grad split">Специальный вопрос</h2>
+    <div class="card rv" style="padding:18px 20px 14px;margin-top:22px;max-width:420px;float:right;margin-left:20px" id="mel2"><div class="melody dark" data-say="Where do you live?"><svg viewBox="0 0 300 90"><path class="mtrack" d="M8 22 C 80 20, 150 22, 200 34 S 270 68, 292 76"/><path class="mline" d="M8 22 C 80 20, 150 22, 200 34 S 270 68, 292 76"/><circle class="mglow" r="14" cx="8" cy="0"/><circle class="mdot" r="7" cx="8" cy="0"/></svg><div class="mwords"><span>Where</span><span>do</span><span>you</span><span>live?</span></div><div class="mcap">Специальный вопрос: голос идёт вниз ↘</div></div></div>
     <p class="lead rv" style="margin-top:14px">Берёшь готовый общий вопрос. Ставишь вперёд вопросительное слово. <b>Внутри ничего не трогаешь.</b> И голос в конце идёт вниз ↘, как в обычной фразе.</p>
-    <div class="card stage-card rv" id="wh-m">
+    <div class="card stage-card rv" id="wh-m" style="clear:both">
       <p class="cap center" style="margin:0">Выбери слово. Оно прилетит в начало, остальное останется на месте.</p>
       <div class="stage"></div>
       <div class="stage-cap"></div>
@@ -710,6 +766,7 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
         <h2 class="h2 sm split" style="color:#fff">Альтернативный вопрос</h2>
         <p class="lead" style="color:rgba(255,255,255,.9);margin:14px auto 26px">Предлагает выбор через <b style="color:#fff">or</b>. Строится как общий, просто в конце добавляешь вариант. Голос: на первом вверх, на втором вниз.</p>
         <div class="card" style="padding:26px 16px;color:var(--ink)" id="alt">
+          <div class="melody dark" style="margin:0 auto 14px" data-say="Tea or coffee?"><svg viewBox="0 0 300 90"><path class="mtrack" d="M8 62 C 60 60, 110 30, 150 22 C 185 16, 205 36, 228 48 S 278 72, 292 78"/><path class="mline" d="M8 62 C 60 60, 110 30, 150 22 C 185 16, 205 36, 228 48 S 278 72, 292 78"/><circle class="mglow" r="14" cx="8" cy="0"/><circle class="mdot" r="7" cx="8" cy="0"/></svg><div class="mwords"><span>Tea</span><span>or</span><span>coffee?</span></div><div class="mcap">На первом варианте вверх, на втором вниз</div></div>
           <div class="ask"><div class="q"><span>Do you want</span> <span class="en">tea ↗</span> <span>or</span> <span class="en" style="color:var(--red)">coffee ↘?</span></div></div>
           <div class="answers"><button class="btn btn-line" data-a="yes">Yes</button><button class="btn btn-line" data-a="tea">Tea, please</button><button class="btn btn-line" data-a="coffee">Coffee</button></div>
           <div class="reply">Попробуй ответить.</div>
@@ -722,6 +779,7 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
 
 <!-- ===== T4 ===== -->
 <section id="t4">
+  <img class="obj px" data-speed="1.2" src="../media/star.webp" alt="" style="width:62px;right:4%;top:30px">
   <div class="wrap">
     <span class="tnum">ТИП 04</span>
     <h2 class="h2 grad split">Вопрос к <span class="bl">подлежащему</span></h2>
@@ -745,6 +803,7 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
 
 <!-- ===== T5 ===== -->
 <section id="t5">
+  <img class="obj px" data-speed="1.5" src="../media/qred.webp" alt="" style="width:46px;right:6%;top:36px">
   <div class="wrap">
     <span class="tnum">ТИП 05</span>
     <h2 class="h2 sm grad split">Разделительный вопрос</h2>
@@ -807,6 +866,7 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
 
 <!-- ===== MISTAKES ===== -->
 <section id="mistakes">
+  <img class="obj px" data-speed="1.1" src="../media/ball.webp" alt="" style="width:62px;right:4%;top:20px">
   <div class="wrap">
     <span class="lbl">Нажми и исправь</span>
     <h2 class="h2 grad split">8 ошибок, которые я слышу в Риме</h2>
@@ -874,6 +934,7 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
 
 <!-- ===== CHEAT ===== -->
 <section id="cheat">
+  <img class="obj px" data-speed="0.8" src="../media/branch.webp" alt="" style="width:120px;right:-20px;top:10px">
   <div class="wrap">
     <span class="lbl">Сохрани скриншот</span>
     <h2 class="h2 grad split">Закрепим</h2>
@@ -912,8 +973,8 @@ footer{padding:30px 0 120px;text-align:center;font-size:13px;color:var(--muted)}
 <footer>Гайд Диаса · виды вопросов в английском<br>Видео: канал «Английский язык с Мариной Озеровой» на YouTube</footer>
 
 <script>
-/* Ссылки на оплату и WhatsApp: вставить сюда, кнопки обновятся сами */
-var LINKS = { lava: '', wa: '' };
+/* Ссылка на оплату: поменять здесь, кнопки обновятся сами */
+var LINKS = { lava: 'https://app.lava.top/products/2c950aa0-d8be-4317-8f39-0f9b4016f5da' };
 
 function xInit(){
   var G = window.gsap && window.ScrollTrigger ? window.gsap : null;
@@ -1015,12 +1076,12 @@ function xInit(){
   });
 
   /* ---- snow ---- */
-  (function(){
-    var c = $('#snow'); if (!c || RM) return;
+  $$('#snow, canvas.snow').forEach(function(c){ (function(){
+    if (RM) return;
     var x = c.getContext('2d'), fl = [], run = false, W, H, dpr = Math.min(2, devicePixelRatio || 1);
     function size(){ W = c.clientWidth; H = c.clientHeight; c.width = W * dpr; c.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0); }
     size(); addEventListener('resize', size);
-    for (var i = 0; i < 70; i++) fl.push({ x: Math.random() * W, y: Math.random() * H, r: 1 + Math.random() * 3, s: .3 + Math.random() * .9, d: Math.random() * 6 });
+    for (var i = 0; i < (c.id ? 70 : 40); i++) fl.push({ x: Math.random() * W, y: Math.random() * H, r: 1 + Math.random() * 3, s: .3 + Math.random() * .9, d: Math.random() * 6 });
     function tick(){
       if (!run) return;
       x.clearRect(0, 0, W, H); x.fillStyle = 'rgba(255,255,255,.9)';
@@ -1028,7 +1089,7 @@ function xInit(){
       requestAnimationFrame(tick);
     }
     whenVisible(c, function(){ if (!run){ run = true; tick(); } }, function(){ run = false; });
-  })();
+  })(); });
 
   /* ---- reveal, headings, floats ---- */
   if (G && !RM){
@@ -1060,6 +1121,104 @@ function xInit(){
     f.classList.toggle('on');
     if (f.classList.contains('on')){ var b = $('.b', f); TTS.say(b.firstChild.textContent); }
   }); });
+
+  /* ---- once-on-screen helper (works with or without GSAP) ---- */
+  function onSeen(el, fn, margin){
+    if (!('IntersectionObserver' in window)) { fn(); return; }
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ io.disconnect(); fn(); } }); }, { rootMargin: margin || '0px 0px -12% 0px' });
+    io.observe(el);
+  }
+
+  /* ---- reading progress + mountain parallax ---- */
+  (function(){
+    var bar = $('#prog'), hero = $('.hero-card'), tick = false;
+    function upd(){
+      tick = false;
+      var h = document.documentElement.scrollHeight - innerHeight;
+      bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, scrollY / h) : 0) + ')';
+      if (hero && !RM && scrollY < 1000) hero.style.backgroundPosition = 'center calc(50% + ' + Math.round(scrollY * .28) + 'px)';
+    }
+    addEventListener('scroll', function(){ if (!tick){ tick = true; requestAnimationFrame(upd); } }, { passive: true }); upd();
+  })();
+
+  /* ---- garlands ---- */
+  $$('.garland').forEach(function(g){
+    var W = 1000, span = 250, cols = ['#E2333B', '#F7DD9C', '#4B7BFF', '#ffffff', '#17A86B'], svg = '<svg viewBox="0 0 1000 60" preserveAspectRatio="none">', d = 'M0 6', n = 0;
+    for (var x = 0; x <= W; x += 10){ var k = (x % span) / span; d += ' L' + x + ' ' + (6 + 30 * Math.sin(Math.PI * k)).toFixed(1); }
+    svg += '<path class="wire" d="' + d + '"/>';
+    for (var bx = 21; bx < W; bx += 42){
+      var t = (bx % span) / span, by = 6 + 30 * Math.sin(Math.PI * t), c = cols[n % cols.length];
+      svg += '<g class="bulb" style="animation-delay:' + ((n * 0.37) % 1.8).toFixed(2) + 's"><rect x="' + (bx - 3) + '" y="' + (by - 1) + '" width="6" height="6" rx="1" fill="#2A3B64"/><ellipse cx="' + bx + '" cy="' + (by + 13) + '" rx="6" ry="9" fill="' + c + '" style="filter:drop-shadow(0 0 6px ' + c + ')"/></g>';
+      n++;
+    }
+    g.innerHTML = svg + '</svg>';
+  });
+
+  /* ---- rotating questions in the hero ---- */
+  (function(){
+    var box = $('#qrot'); if (!box) return;
+    var Q = ['Are you ready?', 'Where do you live?', 'Tea or coffee?', 'Who called you?', "You're ready, aren't you?", 'Do you know where he lives?'], i = 0, timer = null, sp = $('span', box);
+    box.addEventListener('click', function(){ TTS.say(sp.textContent, box, true); });
+    if (RM) return;
+    function next(){
+      i = (i + 1) % Q.length;
+      if (G){ gsap.to(sp, { yPercent: -110, duration: .35, ease: 'power2.in', onComplete: function(){ sp.textContent = Q[i]; gsap.fromTo(sp, { yPercent: 110 }, { yPercent: 0, duration: .45, ease: 'back.out(2)' }); } }); }
+      else sp.textContent = Q[i];
+    }
+    whenVisible(box, function(){ if (!timer) timer = setInterval(next, 2400); }, function(){ clearInterval(timer); timer = null; });
+  })();
+
+  /* ---- melody lines (intonation) ---- */
+  $$('.melody').forEach(function(m){
+    var line = $('.mline', m), dot = $('.mdot', m), glow = $('.mglow', m), L = line.getTotalLength();
+    function at(p){ var pt = line.getPointAtLength(L * p); dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y); glow.setAttribute('cx', pt.x); glow.setAttribute('cy', pt.y); line.style.strokeDashoffset = L * (1 - p); }
+    line.style.strokeDasharray = L;
+    var words = $$('.mwords span', m);
+    function play(){
+      if (!G || RM){ at(1); return; }
+      var o = { p: 0 };
+      gsap.to(o, { p: 1, duration: 1.7, ease: 'power1.inOut', onUpdate: function(){ at(o.p); var k = Math.min(words.length - 1, Math.floor(o.p * words.length)); words.forEach(function(w, j){ w.style.opacity = j <= k ? 1 : .35; }); } });
+    }
+    at(G && !RM ? 0 : 1);
+    onSeen(m, play);
+    m.addEventListener('click', function(){ play(); TTS.say(m.dataset.say, null, true); });
+  });
+
+  /* ---- counters ---- */
+  $$('[data-count]').forEach(function(el){
+    var to = +el.dataset.count;
+    if (!G || RM) return;
+    onSeen(el, function(){ var o = { v: 0 }; el.textContent = '0'; gsap.to(o, { v: to, duration: 1.6, ease: 'power2.out', onUpdate: function(){ el.textContent = Math.round(o.v); } }); });
+  });
+
+  if (G && !RM){
+    /* fan of phones opens when seen */
+    var fan = $('#fan');
+    if (fan){ var ph = $$('.phone', fan); gsap.set(ph, { x: 0, y: 90, rotation: 0 }); onSeen(fan, function(){ gsap.to(ph[0], { x: innerWidth < 760 ? -96 : -170, y: innerWidth < 760 ? 30 : 40, rotation: -13, duration: 1.1, ease: 'back.out(1.5)' }); gsap.to(ph[1], { x: 0, y: 0, duration: 1, ease: 'back.out(1.5)' }); gsap.to(ph[2], { x: innerWidth < 760 ? 96 : 170, y: innerWidth < 760 ? 30 : 40, rotation: 13, duration: 1.1, delay: .08, ease: 'back.out(1.5)' }); }); }
+    /* marquee bands react to scroll speed */
+    $$('.band .track').forEach(function(t, i){
+      var tw = gsap.fromTo(t, { xPercent: i ? -50 : 0 }, { xPercent: i ? 0 : -50, repeat: -1, ease: 'none', duration: 30 });
+      tw.pause(); whenVisible(t, function(){ tw.play(); }, function(){ tw.pause(); });
+      ScrollTrigger.create({ trigger: t.parentNode, start: 'top bottom', end: 'bottom top', onUpdate: function(self){ var v = Math.min(4, 1 + Math.abs(self.getVelocity()) / 600); gsap.to(tw, { timeScale: v, duration: .3, overwrite: true, onComplete: function(){ gsap.to(tw, { timeScale: 1, duration: .8 }); } }); } });
+    });
+    /* decorations drift with scroll */
+    $$('.px').forEach(function(el){
+      var sp = +el.dataset.speed || 1;
+      gsap.fromTo(el, { yPercent: 60 * sp, rotation: -10 * sp }, { yPercent: -120 * sp, rotation: 14 * sp, ease: 'none', scrollTrigger: { trigger: el.parentNode, start: 'top bottom', end: 'bottom top', scrub: .6 } });
+    });
+    /* hero composition sways */
+    gsap.to('.ha-sleigh', { rotation: -2.5, y: -6, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 100%' });
+    gsap.to('.ha-sack', { y: -10, duration: 1.9, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    gsap.to('.ha-gift', { rotation: 6, y: -8, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    /* 3D tilt on type cards (mouse only) */
+    if (matchMedia('(hover:hover)').matches) $$('.tcard, .fy > *').forEach(function(c){
+      c.addEventListener('pointermove', function(e){ var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; gsap.to(c, { rotationY: x * 12, rotationX: -y * 12, transformPerspective: 700, duration: .4, ease: 'power2.out' }); });
+      c.addEventListener('pointerleave', function(){ gsap.to(c, { rotationY: 0, rotationX: 0, duration: .6, ease: 'elastic.out(1,.5)' }); });
+    });
+    /* cheat sheet lines slide in one by one */
+    var cheat = $('.cheat ol');
+    if (cheat){ var li = $$('li', cheat); gsap.set(li, { x: -24 }); onSeen(cheat, function(){ gsap.to(li, { x: 0, duration: .6, stagger: .07, ease: 'back.out(2)' }); }); }
+  }
 
   /* ---- token morph engine ---- */
   function render(box, arr){
